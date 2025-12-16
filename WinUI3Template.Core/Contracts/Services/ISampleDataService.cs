@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using WinUI3Template.Core.Models;
 
 namespace WinUI3Template.Core.Contracts.Services;
@@ -8,4 +9,6 @@ namespace WinUI3Template.Core.Contracts.Services;
 public interface ISampleDataService
 {
     Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync();
+
+    Task<IEnumerable<SampleOrder>> GetContentGridDataAsync();
 }

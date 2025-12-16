@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+
 using Microsoft.UI.Xaml.Controls;
 
 namespace WinUI3Template.Services;
@@ -16,12 +17,12 @@ internal class PageService : IPageService
     {
         // Main Window Pages
         Configure<HomePageViewModel, HomePage>();
-        Configure<ListDetailsPageViewModel, ListDetailsPage>();
         Configure<SettingsPageViewModel, SettingsPage>();
-        // TODO: Add pages here
 
-        // Main Window Subpages
-        // TODO: Add subpages here
+        // Main Window Subpages$
+        Configure<ListDetailsPageViewModel, ListDetailsPage>();
+        Configure<ContentGridViewModel, Views.ContentGridPage>();
+        Configure<ContentGridDetailViewModel, Views.ContentGridDetailPage>();
     }
 
     public Type GetPageType(string viewModel)

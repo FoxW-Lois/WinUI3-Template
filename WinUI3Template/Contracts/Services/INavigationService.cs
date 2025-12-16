@@ -16,4 +16,6 @@ public interface INavigationService
     bool GoBack();
 
     string? GetCurrentPageKey();
+
+    void SetListDataItemForNextConnectedAnimation(object item);
 }

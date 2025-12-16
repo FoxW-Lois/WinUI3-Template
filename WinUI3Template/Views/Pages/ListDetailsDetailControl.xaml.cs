@@ -1,8 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-using WinUI3Template.Core.Models;
-
 namespace WinUI3Template.Views;
 
 public sealed partial class ListDetailsDetailControl : UserControl

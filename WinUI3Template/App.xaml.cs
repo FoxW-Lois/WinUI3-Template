@@ -156,10 +156,19 @@ public partial class App : Application
                 // Main Window Pages
                 services.AddTransient<NavShellPageViewModel>();
                 services.AddTransient<NavShellPage>();
+
                 services.AddTransient<HomePageViewModel>();
                 services.AddTransient<HomePage>();
+
                 services.AddTransient<ListDetailsPageViewModel>();
-                services.AddTransient<ListDetailsPage>();
+                services.AddTransient<ListDetailsPage>(); 
+
+                services.AddTransient<ContentGridViewModel>();
+                services.AddTransient<Views.ContentGridPage>();
+
+                services.AddTransient<ContentGridDetailViewModel>();
+                services.AddTransient<Views.ContentGridDetailPage>();
+
                 services.AddTransient<SettingsPageViewModel>();
                 services.AddTransient<SettingsPage>();
 
