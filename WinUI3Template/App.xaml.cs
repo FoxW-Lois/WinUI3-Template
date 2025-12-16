@@ -1,8 +1,11 @@
 ﻿using System.Diagnostics;
+
 using CommunityToolkit.Mvvm.DependencyInjection;
+
 #if !DISABLE_XAML_GENERATED_MAIN
 using Microsoft.Extensions.Configuration;
 #endif
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
@@ -20,14 +23,14 @@ public partial class App : Application
     public static MainWindow MainWindow { get; set; } = null!;
 
 #if !DISABLE_XAML_GENERATED_MAIN && SINGLE_INSTANCE
-    private static bool IsExistWindow { get; set; } = false;
+		private static bool IsExistWindow { get; set; } = false;
 #endif
 
 #if TRAY_ICON
     public static bool CanCloseWindow { get; set; } = false;
 #endif
 
-    #endregion
+    #endregion Main Window
 
     #region Tray Icon
 
@@ -35,43 +38,43 @@ public partial class App : Application
     public static TrayMenuControl TrayIcon { get; set; } = null!;
 #endif
 
-    #endregion
+    #endregion Tray Icon
 
     #region Splash Screen
 
     public static TaskCompletionSource? SplashScreenLoadingTCS { get; private set; }
 
-    #endregion
+    #endregion Splash Screen
 
     #region Constructor
 
     public App()
     {
 #if !DISABLE_XAML_GENERATED_MAIN && SINGLE_INSTANCE
-        // Check if app is already running
-        if (SystemHelper.IsWindowExist(null, ConstantHelper.AppDisplayName, true))
-        {
-            IsExistWindow = true;
-            Current.Exit();
-            return;
-        }
+				// Check if app is already running
+				if (SystemHelper.IsWindowExist(null, ConstantHelper.AppDisplayName, true))
+				{
+						IsExistWindow = true;
+						Current.Exit();
+						return;
+				}
 #endif
 
         // Initialize the component
         InitializeComponent();
 
 #if !DISABLE_XAML_GENERATED_MAIN
-        // Initialize core helpers
-        LocalSettingsHelper.Initialize();
+				// Initialize core helpers
+				LocalSettingsHelper.Initialize();
 
-        // Set up Logging
-        Environment.SetEnvironmentVariable("LOGGING_ROOT", Path.Combine(LocalSettingsHelper.LogDirectory, InfoHelper.GetVersion().ToString()));
-        var configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .Build();
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
+				// Set up Logging
+				Environment.SetEnvironmentVariable("LOGGING_ROOT", Path.Combine(LocalSettingsHelper.LogDirectory, InfoHelper.GetVersion().ToString()));
+				var configuration = new ConfigurationBuilder()
+						.AddJsonFile("appsettings.json")
+						.Build();
+				Log.Logger = new LoggerConfiguration()
+						.ReadFrom.Configuration(configuration)
+						.CreateLogger();
 #endif
 
         // Build the host
@@ -120,7 +123,7 @@ public partial class App : Application
                 // the main window for general purpose UI thread access.
                 services.AddSingleton(_ => MainWindow.DispatcherQueue);
 
-                #endregion
+                #endregion Core Service
 
                 #region Navigation Service
 
@@ -133,7 +136,7 @@ public partial class App : Application
                 // MainWindow Navigation
                 services.AddSingleton<INavigationService, NavigationService>();
 
-                #endregion
+                #endregion Navigation Service
 
                 #region Settings Service
 
@@ -146,7 +149,7 @@ public partial class App : Application
                 // Settings Management
                 services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
-                #endregion
+                #endregion Settings Service
 
                 #region Views & ViewModels
 
@@ -155,10 +158,14 @@ public partial class App : Application
                 services.AddTransient<NavShellPage>();
                 services.AddTransient<HomePageViewModel>();
                 services.AddTransient<HomePage>();
+                services.AddTransient<ListDetailsPageViewModel>();
+                services.AddTransient<ListDetailsPage>();
                 services.AddTransient<SettingsPageViewModel>();
                 services.AddTransient<SettingsPage>();
 
-                #endregion
+                services.AddTransient<ISampleDataService, SampleDataService>();
+
+                #endregion Views & ViewModels
             })
             .Build();
         Ioc.Default.ConfigureServices(host.Services);
@@ -178,7 +185,7 @@ public partial class App : Application
         _log.Information($"App initialized. Language: {AppLanguageHelper.PreferredLanguage}.");
     }
 
-    #endregion
+    #endregion Constructor
 
     #region App Lifecycle
 
@@ -187,10 +194,10 @@ public partial class App : Application
         base.OnLaunched(args);
 
 #if !DISABLE_XAML_GENERATED_MAIN && SINGLE_INSTANCE
-        if (IsExistWindow)
-        {
-            return;
-        }
+				if (IsExistWindow)
+				{
+						return;
+				}
 #endif
 
         // Ensure the current window is active
@@ -268,15 +275,17 @@ public partial class App : Application
     }
 
 #if DISABLE_XAML_GENERATED_MAIN
+
     public async Task OnActivatedAsync(AppActivationArguments activatedEventArgs)
     {
         _log.Information($"App is activated. Activation type: {activatedEventArgs.Data.GetType().Name}");
 
         await MainWindow.EnqueueOrInvokeAsync(async (_) => await Ioc.Default.GetRequiredService<IActivationService>().ActivateMainWindowAsync(activatedEventArgs));
     }
+
 #endif
 
-    public static async new void Exit()
+    public new static async void Exit()
     {
         _log.Information("Exiting current application");
 
@@ -323,5 +332,5 @@ public partial class App : Application
         }
     }
 
-    #endregion
+    #endregion App Lifecycle
 }

@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-
 using Microsoft.UI.Xaml.Controls;
 
 namespace WinUI3Template.Services;
@@ -17,6 +16,7 @@ internal class PageService : IPageService
     {
         // Main Window Pages
         Configure<HomePageViewModel, HomePage>();
+        Configure<ListDetailsPageViewModel, ListDetailsPage>();
         Configure<SettingsPageViewModel, SettingsPage>();
         // TODO: Add pages here
 
