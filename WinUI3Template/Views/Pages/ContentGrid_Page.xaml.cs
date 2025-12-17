@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 
-namespace WinUI3Template.Views;
+namespace WinUI3Template.Views.Pages;
 
 public sealed partial class ContentGrid_Page : Page
 {

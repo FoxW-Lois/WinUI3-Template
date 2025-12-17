@@ -21,8 +21,8 @@ internal class PageService : IPageService
 
         // Main Window Subpages$
         Configure<DetailsList_ViewModel, ListDetails_Page>();
-        Configure<ContentGrid_ViewModel, Views.ContentGrid_Page>();
-        Configure<ContentGridDetail_ViewModel, Views.ContentGridDetail_Page>();
+        Configure<ContentGrid_ViewModel, ContentGrid_Page>();
+        Configure<ContentGridDetail_ViewModel, ContentGridDetail_Page>();
     }
 
     public Type GetPageType(string viewModel)

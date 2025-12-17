@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:WinUI3Template.Core.Models"
     xmlns:viewmodels="using:WinUI3Template.ViewModels.Pages"
-    xmlns:views="using:WinUI3Template.Views"
+    xmlns:views="using:WinUI3Template.Views.Pages"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     d:DataContext="{d:DesignInstance Type=viewmodels:DetailsList_ViewModel}"
     NavigationCacheMode="Required"
@@ -39,7 +39,7 @@
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid>
-                <views:ListDetails_DetailControl ListDetailsMenuItem="{Binding}" />
+                <views:DetailsList_DetailControl DetailsListMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 

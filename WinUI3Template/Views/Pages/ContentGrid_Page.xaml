@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WinUI3Template.Views.ContentGrid_Page"
+    x:Class="WinUI3Template.Views.Pages.ContentGrid_Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations"
@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:WinUI3Template.Core.Models"
     xmlns:viewmodels="using:WinUI3Template.ViewModels.Pages"
-    xmlns:views="using:WinUI3Template.Views"
+    xmlns:views="using:WinUI3Template.Views.Pages"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     d:DataContext="{d:DesignInstance Type=viewmodels:ContentGrid_ViewModel}"
     NavigationCacheMode="Required"

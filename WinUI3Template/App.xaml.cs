@@ -164,10 +164,10 @@ public partial class App : Application
                 services.AddTransient<ListDetails_Page>(); 
 
                 services.AddTransient<ContentGrid_ViewModel>();
-                services.AddTransient<Views.ContentGrid_Page>();
+                services.AddTransient<ContentGrid_Page>();
 
                 services.AddTransient<ContentGridDetail_ViewModel>();
-                services.AddTransient<Views.ContentGridDetail_Page>();
+                services.AddTransient<ContentGridDetail_Page>();
 
                 services.AddTransient<Settings_ViewModel>();
                 services.AddTransient<Settings_Page>();

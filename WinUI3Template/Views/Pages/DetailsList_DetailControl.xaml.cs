@@ -1,26 +1,26 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-namespace WinUI3Template.Views;
+namespace WinUI3Template.Views.Pages;
 
-public sealed partial class ListDetails_DetailControl : UserControl
+public sealed partial class DetailsList_DetailControl : UserControl
 {
-    public SampleOrder? ListDetailsMenuItem
+    public SampleOrder? DetailsListMenuItem
     {
-        get => GetValue(ListDetailsMenuItemProperty) as SampleOrder;
-        set => SetValue(ListDetailsMenuItemProperty, value);
+        get => GetValue(DetailsListMenuItemProperty) as SampleOrder;
+        set => SetValue(DetailsListMenuItemProperty, value);
     }
 
-    public static readonly DependencyProperty ListDetailsMenuItemProperty = DependencyProperty.Register("ListDetailsMenuItem", typeof(SampleOrder), typeof(ListDetails_DetailControl), new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
+    public static readonly DependencyProperty DetailsListMenuItemProperty = DependencyProperty.Register("DetailsListMenuItem", typeof(SampleOrder), typeof(DetailsList_DetailControl), new PropertyMetadata(null, OnDetailsListMenuItemPropertyChanged));
 
-    public ListDetails_DetailControl()
+    public DetailsList_DetailControl()
     {
         InitializeComponent();
     }
 
-    private static void OnListDetailsMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnDetailsListMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is ListDetails_DetailControl control)
+        if (d is DetailsList_DetailControl control)
         {
             control.ForegroundElement.ChangeView(0, 0, 1);
         }

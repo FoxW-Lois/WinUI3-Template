@@ -3,7 +3,7 @@ using CommunityToolkit.WinUI.UI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
-namespace WinUI3Template.Views;
+namespace WinUI3Template.Views.Pages;
 
 public sealed partial class ContentGridDetail_Page : Page
 {
