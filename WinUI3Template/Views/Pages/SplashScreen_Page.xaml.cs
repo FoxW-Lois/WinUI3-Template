@@ -7,11 +7,11 @@ namespace WinUI3Template.Views.Pages;
 /// Display the app splash screen.
 /// Codes are edited from: <see href="https://github.com/files-community/Files"/>
 /// </summary>
-public sealed partial class SplashScreenPage : Page
+public sealed partial class SplashScreen_Page : Page
 {
     private readonly string AppDisplayName = ConstantHelper.AppDisplayName;
 
-    public SplashScreenPage()
+    public SplashScreen_Page()
     {
         InitializeComponent();
         DataContext = this;

@@ -146,7 +146,7 @@ public sealed partial class MainWindow : WindowEx
     {
         var rootFrame = EnsureWindowIsInitialized(true);
 
-        rootFrame?.Navigate(typeof(SplashScreenPage));
+        rootFrame?.Navigate(typeof(SplashScreen_Page));
     }
 #endif
 
