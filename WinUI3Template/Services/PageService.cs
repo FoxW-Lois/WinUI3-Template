@@ -19,10 +19,11 @@ internal class PageService : IPageService
         Configure<Home_ViewModel, Home_Page>();
         Configure<Settings_ViewModel, Settings_Page>();
 
-        // Main Window Subpages$
-        Configure<DetailsList_ViewModel, ListDetails_Page>();
+        // Main Window Subpages
+        Configure<DetailsList_ViewModel, DetailsList_Page>();
         Configure<ContentGrid_ViewModel, ContentGrid_Page>();
         Configure<ContentGridDetail_ViewModel, ContentGridDetail_Page>();
+        Configure<DataGrid_ViewModel, DataGrid_Page>();
     }
 
     public Type GetPageType(string viewModel)

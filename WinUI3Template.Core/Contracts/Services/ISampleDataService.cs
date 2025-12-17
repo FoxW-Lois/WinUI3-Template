@@ -11,4 +11,6 @@ public interface ISampleDataService
     Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync();
 
     Task<IEnumerable<SampleOrder>> GetContentGridDataAsync();
+
+    Task<IEnumerable<SampleOrder>> GetGridDataAsync();
 }

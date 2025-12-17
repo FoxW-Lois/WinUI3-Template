@@ -244,4 +244,7 @@
     <data name="Shell_ContentGrid.Content" xml:space="preserve">
         <value>ContentGrid</value>
     </data>
+    <data name="Shell_DataGrid.Content" xml:space="preserve">
+        <value>DataGrid</value>
+    </data>
 </root>

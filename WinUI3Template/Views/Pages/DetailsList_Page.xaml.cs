@@ -4,11 +4,11 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace WinUI3Template.Views.Pages;
 
-public sealed partial class ListDetails_Page : Page
+public sealed partial class DetailsList_Page : Page
 {
     public DetailsList_ViewModel ViewModel { get; }
 
-    public ListDetails_Page()
+    public DetailsList_Page()
     {
         ViewModel = Ioc.Default.GetRequiredService<DetailsList_ViewModel>();
         DataContext = ViewModel;
