@@ -5,13 +5,13 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace WinUI3Template.Views;
 
-public sealed partial class ContentGridDetailPage : Page
+public sealed partial class ContentGridDetail_Page : Page
 {
-    public ContentGridDetailViewModel ViewModel { get; }
+    public ContentGridDetail_ViewModel ViewModel { get; }
 
-    public ContentGridDetailPage()
+    public ContentGridDetail_Page()
     {
-        ViewModel = Ioc.Default.GetRequiredService<ContentGridDetailViewModel>();
+        ViewModel = Ioc.Default.GetRequiredService<ContentGridDetail_ViewModel>();
         DataContext = ViewModel;
         InitializeComponent();
     }

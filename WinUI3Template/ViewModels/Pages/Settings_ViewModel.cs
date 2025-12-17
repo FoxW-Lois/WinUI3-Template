@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml;
 
 namespace WinUI3Template.ViewModels.Pages;
 
-public partial class SettingsPageViewModel : ObservableRecipient, INavigationAware
+public partial class Settings_ViewModel : ObservableRecipient, INavigationAware
 {
     #region View Properties
 
@@ -49,7 +49,7 @@ public partial class SettingsPageViewModel : ObservableRecipient, INavigationAwa
 
     private bool _isInitialized;
 
-    public SettingsPageViewModel(IAppSettingsService appSettingsService, IBackdropSelectorService backdropSelectorService, IThemeSelectorService themeSelectorService)
+    public Settings_ViewModel(IAppSettingsService appSettingsService, IBackdropSelectorService backdropSelectorService, IThemeSelectorService themeSelectorService)
     {
         _appSettingsService = appSettingsService;
         _backdropSelectorService = backdropSelectorService;

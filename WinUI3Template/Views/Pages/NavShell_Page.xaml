@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WinUI3Template.Views.Pages.NavShellPage"
+    x:Class="WinUI3Template.Views.Pages.NavShell_Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behaviors="using:WinUI3Template.Behaviors"
@@ -8,7 +8,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="using:WinUI3Template.ViewModels.Pages"
-    d:DataContext="{d:DesignInstance Type=viewmodels:NavShellPageViewModel}"
+    d:DataContext="{d:DesignInstance Type=viewmodels:NavShell_ViewModel}"
     Loaded="Page_Loaded"
     NavigationCacheMode="Required"
     mc:Ignorable="d">
@@ -43,17 +43,17 @@
             IsSettingsVisible="True"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Uid="Shell_Home" helpers:NavigationHelper.NavigateTo="WinUI3Template.ViewModels.Pages.HomePageViewModel">
+                <NavigationViewItem x:Uid="Shell_Home" helpers:NavigationHelper.NavigateTo="WinUI3Template.ViewModels.Pages.Home_ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE80F;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_ListDetails" helpers:NavigationHelper.NavigateTo="WinUI3Template.ViewModels.Pages.ListDetailsPageViewModel">
+                <NavigationViewItem x:Uid="Shell_DetailsList" helpers:NavigationHelper.NavigateTo="WinUI3Template.ViewModels.Pages.DetailsList_ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xea37;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_ContentGrid" helpers:NavigationHelper.NavigateTo="WinUI3Template.ViewModels.Pages.ContentGridViewModel">
+                <NavigationViewItem x:Uid="Shell_ContentGrid" helpers:NavigationHelper.NavigateTo="WinUI3Template.ViewModels.Pages.ContentGrid_ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xf0e2;" />
                     </NavigationViewItem.Icon>

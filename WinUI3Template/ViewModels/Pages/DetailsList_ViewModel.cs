@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WinUI3Template.ViewModels.Pages;
 
-public partial class ListDetailsPageViewModel : ObservableRecipient, INavigationAware
+public partial class DetailsList_ViewModel : ObservableRecipient, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
 
@@ -12,7 +12,7 @@ public partial class ListDetailsPageViewModel : ObservableRecipient, INavigation
 
     public ObservableCollection<SampleOrder> SampleItems { get; private set; } = [];
 
-    public ListDetailsPageViewModel(ISampleDataService sampleDataService)
+    public DetailsList_ViewModel(ISampleDataService sampleDataService)
     {
         _sampleDataService = sampleDataService;
     }

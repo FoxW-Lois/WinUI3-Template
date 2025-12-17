@@ -6,9 +6,9 @@ namespace WinUI3Template.Services;
 
 internal class PageService : IPageService
 {
-    public Type SettingPageType => typeof(SettingsPage);
+    public Type SettingPageType => typeof(Settings_Page);
 
-    public string SettingPageKey => typeof(SettingsPageViewModel).FullName!;
+    public string SettingPageKey => typeof(Settings_ViewModel).FullName!;
 
     private readonly Dictionary<string, Type> _pages = [];
     private readonly Dictionary<Type, Type> _subpages = [];
@@ -16,13 +16,13 @@ internal class PageService : IPageService
     public PageService()
     {
         // Main Window Pages
-        Configure<HomePageViewModel, HomePage>();
-        Configure<SettingsPageViewModel, SettingsPage>();
+        Configure<Home_ViewModel, Home_Page>();
+        Configure<Settings_ViewModel, Settings_Page>();
 
         // Main Window Subpages$
-        Configure<ListDetailsPageViewModel, ListDetailsPage>();
-        Configure<ContentGridViewModel, Views.ContentGridPage>();
-        Configure<ContentGridDetailViewModel, Views.ContentGridDetailPage>();
+        Configure<DetailsList_ViewModel, ListDetails_Page>();
+        Configure<ContentGrid_ViewModel, Views.ContentGrid_Page>();
+        Configure<ContentGridDetail_ViewModel, Views.ContentGridDetail_Page>();
     }
 
     public Type GetPageType(string viewModel)

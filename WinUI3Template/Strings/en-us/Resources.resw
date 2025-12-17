@@ -238,7 +238,7 @@
     <data name="ListDetails_NoSelection.Text" xml:space="preserve">
         <value>Select an item from the list.</value>
     </data>
-    <data name="Shell_ListDetails.Content" xml:space="preserve">
+    <data name="Shell_DetailsList.Content" xml:space="preserve">
         <value>ListDetails</value>
     </data>
     <data name="Shell_ContentGrid.Content" xml:space="preserve">

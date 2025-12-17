@@ -4,14 +4,14 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace WinUI3Template.ViewModels.Pages;
 
-public partial class ContentGridViewModel : ObservableRecipient, INavigationAware
+public partial class ContentGrid_ViewModel : ObservableRecipient, INavigationAware
 {
     private readonly INavigationService _navigationService;
     private readonly ISampleDataService _sampleDataService;
 
     public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
-    public ContentGridViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+    public ContentGrid_ViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
     {
         _navigationService = navigationService;
         _sampleDataService = sampleDataService;
@@ -39,7 +39,7 @@ public partial class ContentGridViewModel : ObservableRecipient, INavigationAwar
         if (clickedItem != null)
         {
             _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-            _navigationService.NavigateTo(typeof(ContentGridDetailViewModel).FullName!, clickedItem.OrderID);
+            _navigationService.NavigateTo(typeof(ContentGridDetail_ViewModel).FullName!, clickedItem.OrderID);
         }
     }
 }

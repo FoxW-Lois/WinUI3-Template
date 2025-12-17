@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace WinUI3Template.ViewModels.Pages;
 
-public partial class NavShellPageViewModel : ObservableRecipient
+public partial class NavShell_ViewModel : ObservableRecipient
 {
     [ObservableProperty]
     public partial bool IsBackEnabled { get; set; }
@@ -15,7 +15,7 @@ public partial class NavShellPageViewModel : ObservableRecipient
 
     public INavigationViewService NavigationViewService { get; }
 
-    public NavShellPageViewModel(INavigationService navigationService, INavigationViewService shellService)
+    public NavShell_ViewModel(INavigationService navigationService, INavigationViewService shellService)
     {
         NavigationService = navigationService;
         NavigationViewService = shellService;

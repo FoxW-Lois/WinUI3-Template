@@ -154,23 +154,23 @@ public partial class App : Application
                 #region Views & ViewModels
 
                 // Main Window Pages
-                services.AddTransient<NavShellPageViewModel>();
-                services.AddTransient<NavShellPage>();
+                services.AddTransient<NavShell_ViewModel>();
+                services.AddTransient<NavShell_Page>();
 
-                services.AddTransient<HomePageViewModel>();
-                services.AddTransient<HomePage>();
+                services.AddTransient<Home_ViewModel>();
+                services.AddTransient<Home_Page>();
 
-                services.AddTransient<ListDetailsPageViewModel>();
-                services.AddTransient<ListDetailsPage>(); 
+                services.AddTransient<DetailsList_ViewModel>();
+                services.AddTransient<ListDetails_Page>(); 
 
-                services.AddTransient<ContentGridViewModel>();
-                services.AddTransient<Views.ContentGridPage>();
+                services.AddTransient<ContentGrid_ViewModel>();
+                services.AddTransient<Views.ContentGrid_Page>();
 
-                services.AddTransient<ContentGridDetailViewModel>();
-                services.AddTransient<Views.ContentGridDetailPage>();
+                services.AddTransient<ContentGridDetail_ViewModel>();
+                services.AddTransient<Views.ContentGridDetail_Page>();
 
-                services.AddTransient<SettingsPageViewModel>();
-                services.AddTransient<SettingsPage>();
+                services.AddTransient<Settings_ViewModel>();
+                services.AddTransient<Settings_Page>();
 
                 services.AddTransient<ISampleDataService, SampleDataService>();
 

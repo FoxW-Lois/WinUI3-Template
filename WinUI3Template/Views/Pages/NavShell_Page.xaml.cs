@@ -4,15 +4,15 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace WinUI3Template.Views.Pages;
 
-public sealed partial class NavShellPage : Page
+public sealed partial class NavShell_Page : Page
 {
-    public NavShellPageViewModel ViewModel { get; }
+    public NavShell_ViewModel ViewModel { get; }
 
     public Frame ShellFrame => NavigationFrame;
 
-    public NavShellPage()
+    public NavShell_Page()
     {
-        ViewModel = Ioc.Default.GetRequiredService<NavShellPageViewModel>();
+        ViewModel = Ioc.Default.GetRequiredService<NavShell_ViewModel>();
         DataContext = ViewModel;
         InitializeComponent();
 

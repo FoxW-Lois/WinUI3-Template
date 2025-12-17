@@ -2,14 +2,14 @@
 
 namespace WinUI3Template.ViewModels.Pages;
 
-public partial class ContentGridDetailViewModel : ObservableRecipient, INavigationAware
+public partial class ContentGridDetail_ViewModel : ObservableRecipient, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
 
     [ObservableProperty]
     private SampleOrder? item;
 
-    public ContentGridDetailViewModel(ISampleDataService sampleDataService)
+    public ContentGridDetail_ViewModel(ISampleDataService sampleDataService)
     {
         _sampleDataService = sampleDataService;
     }

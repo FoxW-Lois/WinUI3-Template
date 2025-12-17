@@ -92,7 +92,7 @@ internal class NavigationViewService(IPageService pageService) : INavigationView
     {
         if (args.IsSettingsInvoked)
         {
-            _navigationService.NavigateTo(typeof(SettingsPageViewModel).FullName!);
+            _navigationService.NavigateTo(typeof(Settings_ViewModel).FullName!);
         }
         else
         {

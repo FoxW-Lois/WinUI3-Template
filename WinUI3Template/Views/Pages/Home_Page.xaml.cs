@@ -3,13 +3,13 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace WinUI3Template.Views.Pages;
 
-public sealed partial class SettingsPage : Page
+public sealed partial class Home_Page : Page
 {
-    public SettingsPageViewModel ViewModel { get; }
+    public Home_ViewModel ViewModel { get; }
 
-    public SettingsPage()
+    public Home_Page()
     {
-        ViewModel = Ioc.Default.GetRequiredService<SettingsPageViewModel>();
+        ViewModel = Ioc.Default.GetRequiredService<Home_ViewModel>();
         DataContext = ViewModel;
         InitializeComponent();
     }
