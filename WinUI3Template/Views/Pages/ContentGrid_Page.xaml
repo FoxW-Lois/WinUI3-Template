@@ -2,7 +2,7 @@
     x:Class="WinUI3Template.Views.Pages.ContentGrid_Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations"
+    xmlns:animations="using:CommunityToolkit.WinUI.Animations"
     xmlns:behaviors="using:WinUI3Template.Behaviors"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
