@@ -4,7 +4,7 @@
 
 # WinUI3 Template
 
-**📟 A template for WinUI 3, with support of tray icon, multi-thread window, splash screen, etc.**
+**📟 A template for WinUI 3, with support of tray icon, multi-thread window, splash screen, etc... Migrated and adapted to .NET 9.**
 
 ## ⭐ Features
 
@@ -24,19 +24,34 @@
 ### 8. Single Instance
 ### 9. Splash Screen
 ### 10. Serilog Logging
+### 11. DetailsList Page (from Template Studio, .NET 7)
+### 12. ContentGrid Page (from Template Studio, .NET 7)
+### 13. DataGrid Page (from Template Studio, .NET 7)
 
 ## 🖼️ Screenshots
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./images/Screenshot1-Dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="./images/Screenshot1.png">
-  <img alt="Screenshot 1" src="./images/Screenshot1.png">
+  <img alt="Home page" src="./images/Home-page.png">
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./images/Screenshot2-Dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="./images/Screenshot2.png">
-  <img alt="Screenshot 2" src="./images/Screenshot2.png">
+  <img alt="DetailsList page" src="./images/DetailsList-page.png">
+</picture>
+
+<picture>
+  <img alt="ContentGrid page" src="./images/ContentGrid-page.png">
+</picture>
+
+<picture>
+  <img alt="ContentGrid Details page" src="./images/ContentGrid-Details-page.png">
+</picture>
+
+<picture>
+  <img alt="DataGrid page" src="./images/DataGrid-page.png">
+</picture>
+
+<picture>
+  <img alt="Settings" src="./images/Settings-page.png">
 </picture>
 
 ## 🚀 Getting Started
@@ -87,6 +102,7 @@
 * fluentui-system-icons: https://github.com/microsoft/fluentui-system-icons
 * H.NotifyIcon: https://github.com/HavenDV/H.NotifyIcon
 * ICONS8: https://icons8.com/icons
+* Original Github template-project from Jack251970 : https://github.com/Jack251970/WinUI3-Template
 * Template Studio for WinUI (C#): https://github.com/microsoft/TemplateStudio
 * terminal: https://github.com/microsoft/terminal
 * WinUI3Windows: https://github.com/smourier/WinUI3Windows
@@ -101,7 +117,7 @@
 
 ## ❤️ Thank You
 
-If you are enjoying this plugin, then please support my work and enthusiasm by buying me a coffee on
+If you are enjoying this plugin, then please support **Jack251970 work's** and enthusiasm by buying him a coffee on
 [https://ko-fi/jackye](https://ko-fi.com/jackye).
 
 [<img style="float:left" src="https://user-images.githubusercontent.com/14358394/115450238-f39e8100-a21b-11eb-89d0-fa4b82cdbce8.png" width="200">](https://ko-fi.com/jackye)
