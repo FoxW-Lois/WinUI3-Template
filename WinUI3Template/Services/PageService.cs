@@ -105,4 +105,5 @@ internal class PageService : IPageService
             _subpages.Add(pageType, subpageType);
         }
     }
+	public PageService() //TODO: Declare new Pages and new Page_ViewModel here
 }
