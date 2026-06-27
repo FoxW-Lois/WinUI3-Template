@@ -2,7 +2,7 @@
 
 internal interface IActivationHandler
 {
-    bool CanHandle(object args);
+	bool CanHandle(object args);
 
-    Task HandleAsync(object args);
+	Task HandleAsync(object args);
 }

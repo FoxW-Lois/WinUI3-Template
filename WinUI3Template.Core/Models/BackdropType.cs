@@ -2,9 +2,9 @@
 
 public enum BackdropType
 {
-    None,
-    Mica,
-    Acrylic,
-    Blur,
-    Transparent
+	None,
+	Mica,
+	Acrylic,
+	Blur,
+	Transparent
 }

@@ -5,189 +5,189 @@ namespace WinUI3Template.Services;
 
 public class DialogService : IDialogService
 {
-    private readonly string Ok = "ButtonOk.Content".GetLocalizedString();
-    private readonly string Cancel = "ButtonCancel.Content".GetLocalizedString();
+	private readonly string Ok = "ButtonOk.Content".GetLocalizedString();
+	private readonly string Cancel = "ButtonCancel.Content".GetLocalizedString();
 
-    #region Window Dialog
+	#region Window Dialog
 
-    public async Task ShowOneButtonDialogAsync(string title, string content)
-    {
-        var dialog = new ContentDialog()
-        {
-            Title = title,
-            Content = content,
-            PrimaryButtonText = Ok,
-            DefaultButton = ContentDialogButton.Primary,
-            XamlRoot = App.MainWindow.Content.XamlRoot
-        };
-        await dialog.ShowAsync();
-    }
+	public async Task ShowOneButtonDialogAsync(string title, string content)
+	{
+		var dialog = new ContentDialog()
+		{
+			Title = title,
+			Content = content,
+			PrimaryButtonText = Ok,
+			DefaultButton = ContentDialogButton.Primary,
+			XamlRoot = App.MainWindow.Content.XamlRoot
+		};
+		await dialog.ShowAsync();
+	}
 
-    public async Task<WidgetDialogResult> ShowTwoButtonDialogAsync(string title, string content, string leftButton = null!, string rightButton = null!)
-    {
-        leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
-        rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
+	public async Task<WidgetDialogResult> ShowTwoButtonDialogAsync(string title, string content, string leftButton = null!, string rightButton = null!)
+	{
+		leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
+		rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
 
-        var dialog = new ContentDialog()
-        {
-            Title = title,
-            Content = content,
-            PrimaryButtonText = leftButton,
-            SecondaryButtonText = rightButton,
-            XamlRoot = App.MainWindow.Content.XamlRoot
-        };
-        var result = await dialog.ShowAsync();
+		var dialog = new ContentDialog()
+		{
+			Title = title,
+			Content = content,
+			PrimaryButtonText = leftButton,
+			SecondaryButtonText = rightButton,
+			XamlRoot = App.MainWindow.Content.XamlRoot
+		};
+		var result = await dialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary)
-        {
-            return WidgetDialogResult.Left;
-        }
-        else if (result == ContentDialogResult.Secondary)
-        {
-            return WidgetDialogResult.Right;
-        }
-        else
-        {
-            return WidgetDialogResult.Unknown;
-        }
-    }
+		if (result == ContentDialogResult.Primary)
+		{
+			return WidgetDialogResult.Left;
+		}
+		else if (result == ContentDialogResult.Secondary)
+		{
+			return WidgetDialogResult.Right;
+		}
+		else
+		{
+			return WidgetDialogResult.Unknown;
+		}
+	}
 
-    public async Task<WidgetDialogResult> ShowThreeButtonDialogAsync(string title, string content, string leftButton = null!, string centerButton = null!, string rightButton = null!)
-    {
-        if (string.IsNullOrWhiteSpace(centerButton))
-        {
-            return await ShowTwoButtonDialogAsync(title, content, leftButton, rightButton);
-        }
+	public async Task<WidgetDialogResult> ShowThreeButtonDialogAsync(string title, string content, string leftButton = null!, string centerButton = null!, string rightButton = null!)
+	{
+		if (string.IsNullOrWhiteSpace(centerButton))
+		{
+			return await ShowTwoButtonDialogAsync(title, content, leftButton, rightButton);
+		}
 
-        leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
-        rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
+		leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
+		rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
 
-        var dialog = new ContentDialog()
-        {
-            Title = title,
-            Content = content,
-            PrimaryButtonText = leftButton,
-            SecondaryButtonText = centerButton,
-            CloseButtonText = rightButton,
-            XamlRoot = App.MainWindow.Content.XamlRoot
-        };
-        var result = await dialog.ShowAsync();
+		var dialog = new ContentDialog()
+		{
+			Title = title,
+			Content = content,
+			PrimaryButtonText = leftButton,
+			SecondaryButtonText = centerButton,
+			CloseButtonText = rightButton,
+			XamlRoot = App.MainWindow.Content.XamlRoot
+		};
+		var result = await dialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary)
-        {
-            return WidgetDialogResult.Left;
-        }
-        else if (result == ContentDialogResult.Secondary)
-        {
-            return WidgetDialogResult.Right;
-        }
-        else if (result == ContentDialogResult.None)
-        {
-            return WidgetDialogResult.Right;
-        }
-        else
-        {
-            return WidgetDialogResult.Unknown;
-        }
-    }
+		if (result == ContentDialogResult.Primary)
+		{
+			return WidgetDialogResult.Left;
+		}
+		else if (result == ContentDialogResult.Secondary)
+		{
+			return WidgetDialogResult.Right;
+		}
+		else if (result == ContentDialogResult.None)
+		{
+			return WidgetDialogResult.Right;
+		}
+		else
+		{
+			return WidgetDialogResult.Unknown;
+		}
+	}
 
-    #endregion Window Dialog
+	#endregion Window Dialog
 
-    #region Full Screen Dialog
+	#region Full Screen Dialog
 
-    public async Task ShowFullScreenOneButtonDialogAsync(string title, string content)
-    {
-        var dialog = new WindowedContentDialog()
-        {
-            WindowTitle = title,
-            Title = title,
-            Content = content,
-            OwnerWindow = null,
-            PrimaryButtonText = Ok,
-            IsTitleBarVisible = false
-        };
-        await dialog.ShowAsync();
-    }
+	public async Task ShowFullScreenOneButtonDialogAsync(string title, string content)
+	{
+		var dialog = new WindowedContentDialog()
+		{
+			WindowTitle = title,
+			Title = title,
+			Content = content,
+			OwnerWindow = null,
+			PrimaryButtonText = Ok,
+			IsTitleBarVisible = false
+		};
+		await dialog.ShowAsync();
+	}
 
-    public async Task<WidgetDialogResult> ShowFullScreenTwoButtonDialogAsync(string title, string content, string leftButton = null!, string rightButton = null!)
-    {
-        leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
-        rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
+	public async Task<WidgetDialogResult> ShowFullScreenTwoButtonDialogAsync(string title, string content, string leftButton = null!, string rightButton = null!)
+	{
+		leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
+		rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
 
-        var dialog = new WindowedContentDialog()
-        {
-            WindowTitle = title,
-            Title = title,
-            Content = content,
-            OwnerWindow = null,
-            PrimaryButtonText = leftButton,
-            SecondaryButtonText = rightButton,
-            IsTitleBarVisible = false
-        };
-        var result = await dialog.ShowAsync();
+		var dialog = new WindowedContentDialog()
+		{
+			WindowTitle = title,
+			Title = title,
+			Content = content,
+			OwnerWindow = null,
+			PrimaryButtonText = leftButton,
+			SecondaryButtonText = rightButton,
+			IsTitleBarVisible = false
+		};
+		var result = await dialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary)
-        {
-            return WidgetDialogResult.Left;
-        }
-        else if (result == ContentDialogResult.Secondary)
-        {
-            return WidgetDialogResult.Right;
-        }
-        else
-        {
-            return WidgetDialogResult.Unknown;
-        }
-    }
+		if (result == ContentDialogResult.Primary)
+		{
+			return WidgetDialogResult.Left;
+		}
+		else if (result == ContentDialogResult.Secondary)
+		{
+			return WidgetDialogResult.Right;
+		}
+		else
+		{
+			return WidgetDialogResult.Unknown;
+		}
+	}
 
-    public async Task<WidgetDialogResult> ShowFullScreenThreeButtonDialogAsync(string title, string content, string leftButton = null!, string centerButton = null!, string rightButton = null!)
-    {
-        if (string.IsNullOrWhiteSpace(centerButton))
-        {
-            return await ShowFullScreenTwoButtonDialogAsync(title, content, leftButton, rightButton);
-        }
+	public async Task<WidgetDialogResult> ShowFullScreenThreeButtonDialogAsync(string title, string content, string leftButton = null!, string centerButton = null!, string rightButton = null!)
+	{
+		if (string.IsNullOrWhiteSpace(centerButton))
+		{
+			return await ShowFullScreenTwoButtonDialogAsync(title, content, leftButton, rightButton);
+		}
 
-        leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
-        rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
+		leftButton = string.IsNullOrWhiteSpace(leftButton) ? Ok : leftButton;
+		rightButton = string.IsNullOrWhiteSpace(rightButton) ? Cancel : rightButton;
 
-        var dialog = new WindowedContentDialog()
-        {
-            WindowTitle = title,
-            Title = title,
-            Content = content,
-            OwnerWindow = null,
-            PrimaryButtonText = leftButton,
-            SecondaryButtonText = centerButton,
-            CloseButtonText = rightButton,
-            IsTitleBarVisible = false
-        };
-        var result = await dialog.ShowAsync();
+		var dialog = new WindowedContentDialog()
+		{
+			WindowTitle = title,
+			Title = title,
+			Content = content,
+			OwnerWindow = null,
+			PrimaryButtonText = leftButton,
+			SecondaryButtonText = centerButton,
+			CloseButtonText = rightButton,
+			IsTitleBarVisible = false
+		};
+		var result = await dialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary)
-        {
-            return WidgetDialogResult.Left;
-        }
-        else if (result == ContentDialogResult.Secondary)
-        {
-            return WidgetDialogResult.Right;
-        }
-        else if (result == ContentDialogResult.None)
-        {
-            return WidgetDialogResult.Right;
-        }
-        else
-        {
-            return WidgetDialogResult.Unknown;
-        }
-    }
+		if (result == ContentDialogResult.Primary)
+		{
+			return WidgetDialogResult.Left;
+		}
+		else if (result == ContentDialogResult.Secondary)
+		{
+			return WidgetDialogResult.Right;
+		}
+		else if (result == ContentDialogResult.None)
+		{
+			return WidgetDialogResult.Right;
+		}
+		else
+		{
+			return WidgetDialogResult.Unknown;
+		}
+	}
 
-    #endregion Full Screen Dialog
+	#endregion Full Screen Dialog
 }
 
 public enum WidgetDialogResult
 {
-    Left,
-    Center,
-    Right,
-    Unknown
+	Left,
+	Center,
+	Right,
+	Unknown
 }

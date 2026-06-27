@@ -7,11 +7,11 @@ namespace WinUI3Template.Core.Contracts.Services;
 
 public interface IBackdropSelectorService
 {
-    BackdropType BackdropType { get; }
+	BackdropType BackdropType { get; }
 
-    public event EventHandler<BackdropType>? BackdropTypeChanged;
+	public event EventHandler<BackdropType>? BackdropTypeChanged;
 
-    Task SetRequestedBackdropTypeAsync(Window window);
+	Task SetRequestedBackdropTypeAsync(Window window);
 
-    Task SetBackdropTypeAsync(BackdropType type);
+	Task SetBackdropTypeAsync(BackdropType type);
 }

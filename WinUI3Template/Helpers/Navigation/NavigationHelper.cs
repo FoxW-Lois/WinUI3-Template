@@ -12,10 +12,10 @@ namespace WinUI3Template.Helpers.Navigation;
 // NavigationHelper.SetNavigateTo(navigationViewItem, typeof(MainViewModel).FullName);
 public class NavigationHelper
 {
-    public static string? GetNavigateTo(NavigationViewItem item) => item.GetValue(NavigateToProperty) as string;
+	public static string? GetNavigateTo(NavigationViewItem item) => item.GetValue(NavigateToProperty) as string;
 
-    public static void SetNavigateTo(NavigationViewItem item, string value) => item.SetValue(NavigateToProperty, value);
+	public static void SetNavigateTo(NavigationViewItem item, string value) => item.SetValue(NavigateToProperty, value);
 
-    public static readonly DependencyProperty NavigateToProperty =
-        DependencyProperty.RegisterAttached("NavigateTo", typeof(string), typeof(NavigationHelper), new PropertyMetadata(null));
+	public static readonly DependencyProperty NavigateToProperty =
+		DependencyProperty.RegisterAttached("NavigateTo", typeof(string), typeof(NavigationHelper), new PropertyMetadata(null));
 }

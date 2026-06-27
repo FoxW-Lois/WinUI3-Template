@@ -12,288 +12,288 @@ namespace WinUI3Template.Helpers.Application;
 /// </summary>
 internal static class InfoHelper
 {
-    #region name
+	#region name
 
-    public static string GetName()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.Id.Name;
-        }
-        else
-        {
-            return GetAssemblyName();
-        }
-    }
+	public static string GetName()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.Id.Name;
+		}
+		else
+		{
+			return GetAssemblyName();
+		}
+	}
 
-    public static string GetFullName()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.Id.FullName;
-        }
-        else
-        {
-            return GetAssemblyFullName();
-        }
-    }
+	public static string GetFullName()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.Id.FullName;
+		}
+		else
+		{
+			return GetAssemblyFullName();
+		}
+	}
 
-    public static string GetDisplayName()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.DisplayName;
-        }
-        else
-        {
-            return GetAssemblyTitle();
-        }
-    }
+	public static string GetDisplayName()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.DisplayName;
+		}
+		else
+		{
+			return GetAssemblyTitle();
+		}
+	}
 
-    public static string GetFamilyName()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.Id.FamilyName;
-        }
-        else
-        {
-            return GetAssemblyTitle();
-        }
-    }
+	public static string GetFamilyName()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.Id.FamilyName;
+		}
+		else
+		{
+			return GetAssemblyTitle();
+		}
+	}
 
-    public static string GetAssemblyName()
-    {
-        return Assembly.GetExecutingAssembly().GetName().Name ?? string.Empty;
-    }
+	public static string GetAssemblyName()
+	{
+		return Assembly.GetExecutingAssembly().GetName().Name ?? string.Empty;
+	}
 
-    private static string GetAssemblyFullName()
-    {
-        return Assembly.GetExecutingAssembly().FullName ?? string.Empty;
-    }
+	private static string GetAssemblyFullName()
+	{
+		return Assembly.GetExecutingAssembly().FullName ?? string.Empty;
+	}
 
-    private static string GetAssemblyTitle()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-        if (attributes.Length > 0)
-        {
-            var titleAttribute = (AssemblyTitleAttribute)attributes[0];
-            if (titleAttribute.Title != string.Empty)
-            {
-                return titleAttribute.Title;
-            }
-        }
-        return string.Empty;
-    }
+	private static string GetAssemblyTitle()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+		if (attributes.Length > 0)
+		{
+			var titleAttribute = (AssemblyTitleAttribute)attributes[0];
+			if (titleAttribute.Title != string.Empty)
+			{
+				return titleAttribute.Title;
+			}
+		}
+		return string.Empty;
+	}
 
-    #endregion
+	#endregion name
 
-    #region version
+	#region version
 
-    public static Version GetVersion()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            var packageVersion = Package.Current.Id.Version;
-            return new(packageVersion.Major, packageVersion.Minor, packageVersion.Build, packageVersion.Revision);
-        }
-        else
-        {
-            return GetAssemblyVersion();
-        }
-    }
+	public static Version GetVersion()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			var packageVersion = Package.Current.Id.Version;
+			return new(packageVersion.Major, packageVersion.Minor, packageVersion.Build, packageVersion.Revision);
+		}
+		else
+		{
+			return GetAssemblyVersion();
+		}
+	}
 
-    private static Version GetAssemblyVersion()
-    {
-        return Assembly.GetExecutingAssembly().GetName().Version ?? new Version();
-    }
+	private static Version GetAssemblyVersion()
+	{
+		return Assembly.GetExecutingAssembly().GetName().Version ?? new Version();
+	}
 
-    #endregion
+	#endregion version
 
-    #region description
+	#region description
 
-    public static string GetDescription()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.Description;
-        }
-        else
-        {
-            return GetAssemblyDescription();
-        }
-    }
+	public static string GetDescription()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.Description;
+		}
+		else
+		{
+			return GetAssemblyDescription();
+		}
+	}
 
-    private static string GetAssemblyDescription()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyDescriptionAttribute)attributes[0]).Description;
-    }
+	private static string GetAssemblyDescription()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyDescriptionAttribute)attributes[0]).Description;
+	}
 
-    #endregion
+	#endregion description
 
-    #region product
+	#region product
 
-    public static string GetProduct()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.DisplayName;
-        }
-        else
-        {
-            return GetAssemblyProduct();
-        }
-    }
+	public static string GetProduct()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.DisplayName;
+		}
+		else
+		{
+			return GetAssemblyProduct();
+		}
+	}
 
-    private static string GetAssemblyProduct()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyProductAttribute)attributes[0]).Product;
-    }
+	private static string GetAssemblyProduct()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyProductAttribute)attributes[0]).Product;
+	}
 
-    #endregion
+	#endregion product
 
-    #region copyright
+	#region copyright
 
-    public static string GetCopyright()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.PublisherDisplayName;
-        }
-        else
-        {
-            return GetAssemblyCopyright();
-        }
-    }
+	public static string GetCopyright()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.PublisherDisplayName;
+		}
+		else
+		{
+			return GetAssemblyCopyright();
+		}
+	}
 
-    private static string GetAssemblyCopyright()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
-    }
+	private static string GetAssemblyCopyright()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
+	}
 
-    #endregion
+	#endregion copyright
 
-    #region company
+	#region company
 
-    public static string GetCompany()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.PublisherDisplayName;
-        }
-        else
-        {
-            return GetAssemblyCompany();
-        }
-    }
+	public static string GetCompany()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.PublisherDisplayName;
+		}
+		else
+		{
+			return GetAssemblyCompany();
+		}
+	}
 
-    private static string GetAssemblyCompany()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyCompanyAttribute)attributes[0]).Company;
-    }
+	private static string GetAssemblyCompany()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyCompanyAttribute)attributes[0]).Company;
+	}
 
-    #endregion
+	#endregion company
 
-    #region configuration
+	#region configuration
 
-    public static string GetConfiguration()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.Id.Architecture.ToString();
-        }
-        else
-        {
-            return GetAssemblyConfiguration();
-        }
-    }
+	public static string GetConfiguration()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.Id.Architecture.ToString();
+		}
+		else
+		{
+			return GetAssemblyConfiguration();
+		}
+	}
 
-    private static string GetAssemblyConfiguration()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyConfigurationAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyConfigurationAttribute)attributes[0]).Configuration;
-    }
+	private static string GetAssemblyConfiguration()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyConfigurationAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyConfigurationAttribute)attributes[0]).Configuration;
+	}
 
-    #endregion
+	#endregion configuration
 
-    #region trademark
+	#region trademark
 
-    public static string GetTrademark()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.Id.PublisherId;
-        }
-        else
-        {
-            return GetAssemblyTrademark();
-        }
-    }
+	public static string GetTrademark()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.Id.PublisherId;
+		}
+		else
+		{
+			return GetAssemblyTrademark();
+		}
+	}
 
-    private static string GetAssemblyTrademark()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTrademarkAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyTrademarkAttribute)attributes[0]).Trademark;
-    }
+	private static string GetAssemblyTrademark()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTrademarkAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyTrademarkAttribute)attributes[0]).Trademark;
+	}
 
-    #endregion
+	#endregion trademark
 
-    #region culture
+	#region culture
 
-    public static string GetCulture()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return CultureInfo.CurrentCulture.ToString();
-        }
-        else
-        {
-            return GetAssemblyCulture();
-        }
-    }
+	public static string GetCulture()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return CultureInfo.CurrentCulture.ToString();
+		}
+		else
+		{
+			return GetAssemblyCulture();
+		}
+	}
 
-    private static string GetAssemblyCulture()
-    {
-        var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCultureAttribute), false);
-        return attributes.Length == 0 ? string.Empty : ((AssemblyCultureAttribute)attributes[0]).Culture;
-    }
+	private static string GetAssemblyCulture()
+	{
+		var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCultureAttribute), false);
+		return attributes.Length == 0 ? string.Empty : ((AssemblyCultureAttribute)attributes[0]).Culture;
+	}
 
-    #endregion
+	#endregion culture
 
-    #region path
+	#region path
 
-    public static string GetInstalledLocation()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.InstalledLocation.Path;
-        }
-        else
-        {
-            return GetAssemblyLocation();
-        }
-    }
+	public static string GetInstalledLocation()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.InstalledLocation.Path;
+		}
+		else
+		{
+			return GetAssemblyLocation();
+		}
+	}
 
-    public static string GetEffectivePath()
-    {
-        if (RuntimeHelper.IsMSIX)
-        {
-            return Package.Current.EffectivePath;
-        }
-        else
-        {
-            return GetAssemblyLocation();
-        }
-    }
+	public static string GetEffectivePath()
+	{
+		if (RuntimeHelper.IsMSIX)
+		{
+			return Package.Current.EffectivePath;
+		}
+		else
+		{
+			return GetAssemblyLocation();
+		}
+	}
 
-    private static string GetAssemblyLocation()
-    {
-        return AppContext.BaseDirectory;
-    }
+	private static string GetAssemblyLocation()
+	{
+		return AppContext.BaseDirectory;
+	}
 
-    #endregion
+	#endregion path
 }

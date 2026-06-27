@@ -5,37 +5,37 @@ namespace WinUI3Template.ViewModels.Pages;
 
 public partial class DetailsList_ViewModel : ObservableRecipient, INavigationAware
 {
-    private readonly ISampleDataService _sampleDataService;
+	private readonly ISampleDataService _sampleDataService;
 
-    [ObservableProperty]
-    private SampleOrder? selected;
+	[ObservableProperty]
+	private SampleOrder? selected;
 
-    public ObservableCollection<SampleOrder> SampleItems { get; private set; } = [];
+	public ObservableCollection<SampleOrder> SampleItems { get; private set; } = [];
 
-    public DetailsList_ViewModel(ISampleDataService sampleDataService)
-    {
-        _sampleDataService = sampleDataService;
-    }
+	public DetailsList_ViewModel(ISampleDataService sampleDataService)
+	{
+		_sampleDataService = sampleDataService;
+	}
 
-    public async void OnNavigatedTo(object parameter)
-    {
-        SampleItems.Clear();
+	public async void OnNavigatedTo(object parameter)
+	{
+		SampleItems.Clear();
 
-        // TODO: Replace with real data.
-        var data = await _sampleDataService.GetListDetailsDataAsync();
+		// TODO: Replace with real data.
+		var data = await _sampleDataService.GetListDetailsDataAsync();
 
-        foreach (var item in data)
-        {
-            SampleItems.Add(item);
-        }
-    }
+		foreach (var item in data)
+		{
+			SampleItems.Add(item);
+		}
+	}
 
-    public void OnNavigatedFrom()
-    {
-    }
+	public void OnNavigatedFrom()
+	{
+	}
 
-    public void EnsureItemSelected()
-    {
-        Selected ??= SampleItems.First();
-    }
+	public void EnsureItemSelected()
+	{
+		Selected ??= SampleItems.First();
+	}
 }

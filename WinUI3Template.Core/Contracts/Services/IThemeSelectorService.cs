@@ -6,22 +6,22 @@ namespace WinUI3Template.Core.Contracts.Services;
 
 public interface IThemeSelectorService
 {
-    ElementTheme Theme { get; }
+	ElementTheme Theme { get; }
 
-    /// <summary>
-    /// Occurs when the theme has changed, either due to user selection or the system theme changing.
-    /// </summary>
-    public event EventHandler<ElementTheme>? ThemeChanged;
+	/// <summary>
+	/// Occurs when the theme has changed, either due to user selection or the system theme changing.
+	/// </summary>
+	public event EventHandler<ElementTheme>? ThemeChanged;
 
-    Task SetRequestedThemeAsync(Window window);
+	Task SetRequestedThemeAsync(Window window);
 
-    Task SetThemeAsync(ElementTheme theme);
+	Task SetThemeAsync(ElementTheme theme);
 
-    /// <summary>
-    /// Checks if the <see cref="Theme"/> value resolves to dark
-    /// </summary>
-    /// <returns>True if the current theme is dark</returns>
-    bool IsDarkTheme();
+	/// <summary>
+	/// Checks if the <see cref="Theme"/> value resolves to dark
+	/// </summary>
+	/// <returns>True if the current theme is dark</returns>
+	bool IsDarkTheme();
 
-    ElementTheme GetActualTheme();
+	ElementTheme GetActualTheme();
 }

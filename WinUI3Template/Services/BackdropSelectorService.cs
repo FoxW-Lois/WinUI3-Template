@@ -4,34 +4,34 @@ namespace WinUI3Template.Services;
 
 internal class BackdropSelectorService(IAppSettingsService appSettingsService) : IBackdropSelectorService
 {
-    public BackdropType BackdropType => _appSettingsService.BackdropType;
+	public BackdropType BackdropType => _appSettingsService.BackdropType;
 
-    public event EventHandler<BackdropType>? BackdropTypeChanged;
+	public event EventHandler<BackdropType>? BackdropTypeChanged;
 
-    private readonly IAppSettingsService _appSettingsService = appSettingsService;
+	private readonly IAppSettingsService _appSettingsService = appSettingsService;
 
-    public async Task SetBackdropTypeAsync(BackdropType type)
-    {
-        await SetRequestedBackdropTypeAsync(App.MainWindow, type);
+	public async Task SetBackdropTypeAsync(BackdropType type)
+	{
+		await SetRequestedBackdropTypeAsync(App.MainWindow, type);
 
-        await WindowsExtensions.GetAllWindows().EnqueueOrInvokeAsync(
-            async (window) => await SetRequestedBackdropTypeAsync(window, type),
-            Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal);
+		await WindowsExtensions.GetAllWindows().EnqueueOrInvokeAsync(
+			async (window) => await SetRequestedBackdropTypeAsync(window, type),
+			Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal);
 
-        BackdropTypeChanged?.Invoke(this, type);
+		BackdropTypeChanged?.Invoke(this, type);
 
-        await _appSettingsService.SetBackdropAsync(type);
-    }
+		await _appSettingsService.SetBackdropAsync(type);
+	}
 
-    public async Task SetRequestedBackdropTypeAsync(Window window)
-    {
-        await SetRequestedBackdropTypeAsync(window, BackdropType);
-    }
+	public async Task SetRequestedBackdropTypeAsync(Window window)
+	{
+		await SetRequestedBackdropTypeAsync(window, BackdropType);
+	}
 
-    private static async Task SetRequestedBackdropTypeAsync(Window window, BackdropType type)
-    {
-        BackdropHelper.SetRequestedBackdropAsync(window, type);
+	private static async Task SetRequestedBackdropTypeAsync(Window window, BackdropType type)
+	{
+		BackdropHelper.SetRequestedBackdropAsync(window, type);
 
-        await Task.CompletedTask;
-    }
+		await Task.CompletedTask;
+	}
 }

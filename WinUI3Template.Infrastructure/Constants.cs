@@ -5,45 +5,45 @@ namespace WinUI3Template.Infrastructure;
 
 public static class Constants
 {
-    #region Program
+	#region Program
 
-    public const string WinUI3Template = "WinUI3Template";
+	public const string WinUI3Template = "WinUI3Template";
 
-    #endregion
+	#endregion Program
 
-    #region Startup
+	#region Startup
 
-    public const string StartupTaskId = "StartAppOnLoginTask";
+	public const string StartupTaskId = "StartAppOnLoginTask";
 
-    public const string StartupRegistryKey = WinUI3Template;
+	public const string StartupRegistryKey = WinUI3Template;
 
-    public const string StartupLogonTaskName = $"{WinUI3Template} Startup";
+	public const string StartupLogonTaskName = $"{WinUI3Template} Startup";
 
-    public const string StartupLogonTaskDesc = $"{WinUI3Template} Auto Startup";
+	public const string StartupLogonTaskDesc = $"{WinUI3Template} Auto Startup";
 
-    #endregion
+	#endregion Startup
 
-    #region Resources
+	#region Resources
 
-    public const string DefaultResourceFileName = "Resources";
+	public const string DefaultResourceFileName = "Resources";
 
-    public static readonly string AppIconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Icon.ico");
+	public static readonly string AppIconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Icon.ico");
 
-    #endregion
+	#endregion Resources
 
-    #region Settings & Logs
+	#region Settings & Logs
 
 #if DEBUG
-    public const string ApplicationDataFolder = "ApplicationData(Debug)";
+	public const string ApplicationDataFolder = "ApplicationData(Debug)";
 #else
     public const string ApplicationDataFolder = "ApplicationData";
 #endif
 
-    public const string SettingsFolder = "Settings";
+	public const string SettingsFolder = "Settings";
 
-    public const string SettingsFile = "Settings.json";
+	public const string SettingsFile = "Settings.json";
 
-    public const string LogsFolder = "Logs";
+	public const string LogsFolder = "Logs";
 
-    #endregion
+	#endregion Settings & Logs
 }

@@ -9,22 +9,22 @@ namespace WinUI3Template.Views.Pages;
 /// </summary>
 public sealed partial class SplashScreen_Page : Page
 {
-    private readonly string AppDisplayName = ConstantHelper.AppDisplayName;
+	private readonly string AppDisplayName = ConstantHelper.AppDisplayName;
 
-    public SplashScreen_Page()
-    {
-        InitializeComponent();
-        DataContext = this;
-        App.MainWindow.ExtendsContentIntoTitleBar = true;
-    }
+	public SplashScreen_Page()
+	{
+		InitializeComponent();
+		DataContext = this;
+		App.MainWindow.ExtendsContentIntoTitleBar = true;
+	}
 
-    private void Image_ImageOpened(object sender, RoutedEventArgs e)
-    {
-        App.SplashScreenLoadingTCS?.TrySetResult();
-    }
+	private void Image_ImageOpened(object sender, RoutedEventArgs e)
+	{
+		App.SplashScreenLoadingTCS?.TrySetResult();
+	}
 
-    private void Image_ImageFailed(object sender, RoutedEventArgs e)
-    {
-        App.SplashScreenLoadingTCS?.TrySetResult();
-    }
+	private void Image_ImageFailed(object sender, RoutedEventArgs e)
+	{
+		App.SplashScreenLoadingTCS?.TrySetResult();
+	}
 }

@@ -16,40 +16,40 @@ namespace WinUI3Template;
 
 public partial class App : Application
 {
-    private static readonly ILogger _log = Log.ForContext("SourceContext", nameof(App));
+	private static readonly ILogger _log = Log.ForContext("SourceContext", nameof(App));
 
-    #region Main Window
+	#region Main Window
 
-    public static MainWindow MainWindow { get; set; } = null!;
+	public static MainWindow MainWindow { get; set; } = null!;
 
 #if !DISABLE_XAML_GENERATED_MAIN && SINGLE_INSTANCE
 		private static bool IsExistWindow { get; set; } = false;
 #endif
 
 #if TRAY_ICON
-    public static bool CanCloseWindow { get; set; } = false;
+	public static bool CanCloseWindow { get; set; } = false;
 #endif
 
-    #endregion Main Window
+	#endregion Main Window
 
-    #region Tray Icon
+	#region Tray Icon
 
 #if TRAY_ICON
-    public static TrayMenuControl TrayIcon { get; set; } = null!;
+	public static TrayMenuControl TrayIcon { get; set; } = null!;
 #endif
 
-    #endregion Tray Icon
+	#endregion Tray Icon
 
-    #region Splash Screen
+	#region Splash Screen
 
-    public static TaskCompletionSource? SplashScreenLoadingTCS { get; private set; }
+	public static TaskCompletionSource? SplashScreenLoadingTCS { get; private set; }
 
-    #endregion Splash Screen
+	#endregion Splash Screen
 
-    #region Constructor
+	#region Constructor
 
-    public App()
-    {
+	public App()
+	{
 #if !DISABLE_XAML_GENERATED_MAIN && SINGLE_INSTANCE
 				// Check if app is already running
 				if (SystemHelper.IsWindowExist(null, ConstantHelper.AppDisplayName, true))
@@ -60,8 +60,8 @@ public partial class App : Application
 				}
 #endif
 
-        // Initialize the component
-        InitializeComponent();
+		// Initialize the component
+		InitializeComponent();
 
 #if !DISABLE_XAML_GENERATED_MAIN
 				// Initialize core helpers
@@ -77,133 +77,133 @@ public partial class App : Application
 						.CreateLogger();
 #endif
 
-        // Build the host
-        var host = Host
-            .CreateDefaultBuilder()
-            .UseContentRoot(AppContext.BaseDirectory)
-            .ConfigureLogging(builder => builder
-                .AddSerilog(dispose: true))
-            .UseDefaultServiceProvider((context, options) =>
-            {
-                options.ValidateOnBuild = true;
-            })
-            .ConfigureServices((context, services) =>
-            {
-                #region Core Service
+		// Build the host
+		var host = Host
+			.CreateDefaultBuilder()
+			.UseContentRoot(AppContext.BaseDirectory)
+			.ConfigureLogging(builder => builder
+				.AddSerilog(dispose: true))
+			.UseDefaultServiceProvider((context, options) =>
+			{
+				options.ValidateOnBuild = true;
+			})
+			.ConfigureServices((context, services) =>
+			{
+				#region Core Service
 
-                // Default Activation Handler
-                services.AddSingleton<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
+				// Default Activation Handler
+				services.AddSingleton<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
-                // Other Activation Handlers
-                services.AddSingleton<IActivationHandler, AppNotificationActivationHandler>();
+				// Other Activation Handlers
+				services.AddSingleton<IActivationHandler, AppNotificationActivationHandler>();
 
-                // Windows Activation
-                services.AddSingleton<IActivationService, ActivationService>();
+				// Windows Activation
+				services.AddSingleton<IActivationService, ActivationService>();
 
-                // Notifications
-                services.AddSingleton<IAppNotificationService, AppNotificationService>();
+				// Notifications
+				services.AddSingleton<IAppNotificationService, AppNotificationService>();
 
-                // File Storage
-                services.AddSingleton<IFileService, FileService>();
+				// File Storage
+				services.AddSingleton<IFileService, FileService>();
 
-                // Theme Management
-                services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+				// Theme Management
+				services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 
-                // Backdrop Management
-                services.AddSingleton<IBackdropSelectorService, BackdropSelectorService>();
+				// Backdrop Management
+				services.AddSingleton<IBackdropSelectorService, BackdropSelectorService>();
 
-                // Dialog Managment
-                services.AddSingleton<IDialogService, DialogService>();
+				// Dialog Managment
+				services.AddSingleton<IDialogService, DialogService>();
 
-                // Main window: Allow access to the main window
-                // from anywhere in the application.
-                services.AddSingleton(_ => (Window)MainWindow);
+				// Main window: Allow access to the main window
+				// from anywhere in the application.
+				services.AddSingleton(_ => (Window)MainWindow);
 
-                // DispatcherQueue: Allow access to the DispatcherQueue for
-                // the main window for general purpose UI thread access.
-                services.AddSingleton(_ => MainWindow.DispatcherQueue);
+				// DispatcherQueue: Allow access to the DispatcherQueue for
+				// the main window for general purpose UI thread access.
+				services.AddSingleton(_ => MainWindow.DispatcherQueue);
 
-                #endregion Core Service
+				#endregion Core Service
 
-                #region Navigation Service
+				#region Navigation Service
 
-                // MainWindow Pages
-                services.AddSingleton<IPageService, PageService>();
+				// MainWindow Pages
+				services.AddSingleton<IPageService, PageService>();
 
-                // MainWindow Navigation View
-                services.AddSingleton<INavigationViewService, NavigationViewService>();
+				// MainWindow Navigation View
+				services.AddSingleton<INavigationViewService, NavigationViewService>();
 
-                // MainWindow Navigation
-                services.AddSingleton<INavigationService, NavigationService>();
+				// MainWindow Navigation
+				services.AddSingleton<INavigationService, NavigationService>();
 
-                #endregion Navigation Service
+				#endregion Navigation Service
 
-                #region Settings Service
+				#region Settings Service
 
-                // Local Stettings
-                services.AddSingleton<LocalSettingsKeys>();
+				// Local Stettings
+				services.AddSingleton<LocalSettingsKeys>();
 
-                // Local Storage
-                services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+				// Local Storage
+				services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
 
-                // Settings Management
-                services.AddSingleton<IAppSettingsService, AppSettingsService>();
+				// Settings Management
+				services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
-                #endregion Settings Service
+				#endregion Settings Service
 
-                #region Views & ViewModels
+				#region Views & ViewModels
 
-                // Main Window Pages
-                services.AddTransient<NavShell_ViewModel>();
-                services.AddTransient<NavShell_Page>();
+				// Main Window Pages
+				services.AddTransient<NavShell_ViewModel>();
+				services.AddTransient<NavShell_Page>();
 
-                services.AddTransient<Home_ViewModel>();
-                services.AddTransient<Home_Page>();
+				services.AddTransient<Home_ViewModel>();
+				services.AddTransient<Home_Page>();
 
-                services.AddTransient<DetailsList_ViewModel>();
-                services.AddTransient<DetailsList_Page>(); 
+				services.AddTransient<DetailsList_ViewModel>();
+				services.AddTransient<DetailsList_Page>();
 
-                services.AddTransient<ContentGrid_ViewModel>();
-                services.AddTransient<ContentGrid_Page>();
+				services.AddTransient<ContentGrid_ViewModel>();
+				services.AddTransient<ContentGrid_Page>();
 
-                services.AddTransient<ContentGridDetail_ViewModel>();
-                services.AddTransient<ContentGridDetail_Page>();
+				services.AddTransient<ContentGridDetail_ViewModel>();
+				services.AddTransient<ContentGridDetail_Page>();
 
-                services.AddTransient<DataGrid_ViewModel>();
-                services.AddTransient<DataGrid_Page>();
+				services.AddTransient<DataGrid_ViewModel>();
+				services.AddTransient<DataGrid_Page>();
 
-                services.AddTransient<Settings_ViewModel>();
-                services.AddTransient<Settings_Page>();
+				services.AddTransient<Settings_ViewModel>();
+				services.AddTransient<Settings_Page>();
 
-                services.AddTransient<ISampleDataService, SampleDataService>();
+				services.AddTransient<ISampleDataService, SampleDataService>();
 
-                #endregion Views & ViewModels
-            })
-            .Build();
-        Ioc.Default.ConfigureServices(host.Services);
+				#endregion Views & ViewModels
+			})
+			.Build();
+		Ioc.Default.ConfigureServices(host.Services);
 
-        // Configure exception handlers
-        UnhandledException += (sender, e) => HandleAppUnhandledException(e.Exception, true);
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) => HandleAppUnhandledException(e.ExceptionObject as Exception, false);
-        TaskScheduler.UnobservedTaskException += (sender, e) => HandleAppUnhandledException(e.Exception, false);
+		// Configure exception handlers
+		UnhandledException += (sender, e) => HandleAppUnhandledException(e.Exception, true);
+		AppDomain.CurrentDomain.UnhandledException += (sender, e) => HandleAppUnhandledException(e.ExceptionObject as Exception, false);
+		TaskScheduler.UnobservedTaskException += (sender, e) => HandleAppUnhandledException(e.Exception, false);
 
-        // Initialize core services
-        Ioc.Default.GetRequiredService<IAppSettingsService>().Initialize();
-        Ioc.Default.GetRequiredService<IAppNotificationService>().Initialize();
+		// Initialize core services
+		Ioc.Default.GetRequiredService<IAppSettingsService>().Initialize();
+		Ioc.Default.GetRequiredService<IAppNotificationService>().Initialize();
 
-        // Initialize core helpers after services
-        AppLanguageHelper.Initialize();
+		// Initialize core helpers after services
+		AppLanguageHelper.Initialize();
 
-        _log.Information($"App initialized. Language: {AppLanguageHelper.PreferredLanguage}.");
-    }
+		_log.Information($"App initialized. Language: {AppLanguageHelper.PreferredLanguage}.");
+	}
 
-    #endregion Constructor
+	#endregion Constructor
 
-    #region App Lifecycle
+	#region App Lifecycle
 
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
-    {
-        base.OnLaunched(args);
+	protected override void OnLaunched(LaunchActivatedEventArgs args)
+	{
+		base.OnLaunched(args);
 
 #if !DISABLE_XAML_GENERATED_MAIN && SINGLE_INSTANCE
 				if (IsExistWindow)
@@ -212,137 +212,137 @@ public partial class App : Application
 				}
 #endif
 
-        // Ensure the current window is active
-        if (MainWindow != null)
-        {
-            return;
-        }
+		// Ensure the current window is active
+		if (MainWindow != null)
+		{
+			return;
+		}
 
-        _ = ActivateAsync();
+		_ = ActivateAsync();
 
-        async Task ActivateAsync()
-        {
-            // Get AppActivationArguments
-            var appActivationArguments = AppInstance.GetCurrent().GetActivatedEventArgs();
+		async Task ActivateAsync()
+		{
+			// Get AppActivationArguments
+			var appActivationArguments = AppInstance.GetCurrent().GetActivatedEventArgs();
 
-            // Initialize the window
-            MainWindow = new MainWindow();
-
-#if SPLASH_SCREEN
-            // Show the splash screen
-            SplashScreenLoadingTCS = new TaskCompletionSource();
-            await Ioc.Default.GetRequiredService<IActivationService>().LaunchMainWindowAsync(appActivationArguments);
-
-            // Activate the window
-            MainWindow.Activate();
-#endif
-
-            _log.Information($"App launched. Launch args type: {args.GetType().Name}.");
+			// Initialize the window
+			MainWindow = new MainWindow();
 
 #if SPLASH_SCREEN
-            static async Task WithTimeoutAsync(Task task, TimeSpan timeout)
-            {
-                if (task == await Task.WhenAny(task, Task.Delay(timeout)))
-                {
-                    await task;
-                }
-            }
+			// Show the splash screen
+			SplashScreenLoadingTCS = new TaskCompletionSource();
+			await Ioc.Default.GetRequiredService<IActivationService>().LaunchMainWindowAsync(appActivationArguments);
 
-            // Wait for the UI to update
-            await WithTimeoutAsync(SplashScreenLoadingTCS!.Task, TimeSpan.FromMilliseconds(500));
-            SplashScreenLoadingTCS = null;
+			// Activate the window
+			MainWindow.Activate();
 #endif
 
-            // Check startup
-            _ = StartupHelper.CheckStartup();
+			_log.Information($"App launched. Launch args type: {args.GetType().Name}.");
 
-            // TODO: Initialize others things
+#if SPLASH_SCREEN
+			static async Task WithTimeoutAsync(Task task, TimeSpan timeout)
+			{
+				if (task == await Task.WhenAny(task, Task.Delay(timeout)))
+				{
+					await task;
+				}
+			}
 
-            await Ioc.Default.GetRequiredService<IActivationService>().ActivateMainWindowAsync(args);
-        }
-    }
+			// Wait for the UI to update
+			await WithTimeoutAsync(SplashScreenLoadingTCS!.Task, TimeSpan.FromMilliseconds(500));
+			SplashScreenLoadingTCS = null;
+#endif
 
-    private static void HandleAppUnhandledException(Exception? ex, bool showToastNotification)
-    {
-        var exceptionString = ExceptionFormatter.FormatExcpetion(ex);
+			// Check startup
+			_ = StartupHelper.CheckStartup();
 
-        Debugger.Break();
+			// TODO: Initialize others things
 
-        // Log the error
-        _log.Fatal(ex, $"An unhandled error occurred : {exceptionString}");
+			await Ioc.Default.GetRequiredService<IActivationService>().ActivateMainWindowAsync(args);
+		}
+	}
 
-        // Close the log
-        Log.CloseAndFlush();
+	private static void HandleAppUnhandledException(Exception? ex, bool showToastNotification)
+	{
+		var exceptionString = ExceptionFormatter.FormatExcpetion(ex);
 
-        // Try to show a notification
-        if (showToastNotification)
-        {
-            Ioc.Default.GetRequiredService<IAppNotificationService>().TryShow(
-                string.Format("AppNotificationUnhandledExceptionPayload".GetLocalizedString(),
-                $"{ex?.ToString()}{Environment.NewLine}"));
-        }
+		Debugger.Break();
 
-        // We are very likely in a bad and unrecoverable state, so ensure Dev Home crashes w/ the exception info.
-        Environment.FailFast(exceptionString, ex);
-    }
+		// Log the error
+		_log.Fatal(ex, $"An unhandled error occurred : {exceptionString}");
+
+		// Close the log
+		Log.CloseAndFlush();
+
+		// Try to show a notification
+		if (showToastNotification)
+		{
+			Ioc.Default.GetRequiredService<IAppNotificationService>().TryShow(
+				string.Format("AppNotificationUnhandledExceptionPayload".GetLocalizedString(),
+				$"{ex?.ToString()}{Environment.NewLine}"));
+		}
+
+		// We are very likely in a bad and unrecoverable state, so ensure Dev Home crashes w/ the exception info.
+		Environment.FailFast(exceptionString, ex);
+	}
 
 #if DISABLE_XAML_GENERATED_MAIN
 
-    public async Task OnActivatedAsync(AppActivationArguments activatedEventArgs)
-    {
-        _log.Information($"App is activated. Activation type: {activatedEventArgs.Data.GetType().Name}");
+	public async Task OnActivatedAsync(AppActivationArguments activatedEventArgs)
+	{
+		_log.Information($"App is activated. Activation type: {activatedEventArgs.Data.GetType().Name}");
 
-        await MainWindow.EnqueueOrInvokeAsync(async (_) => await Ioc.Default.GetRequiredService<IActivationService>().ActivateMainWindowAsync(activatedEventArgs));
-    }
+		await MainWindow.EnqueueOrInvokeAsync(async (_) => await Ioc.Default.GetRequiredService<IActivationService>().ActivateMainWindowAsync(activatedEventArgs));
+	}
 
 #endif
 
-    public new static async void Exit()
-    {
-        _log.Information("Exiting current application");
+	public new static async void Exit()
+	{
+		_log.Information("Exiting current application");
 
-        // Unregister app notification service
-        Ioc.Default.GetRequiredService<IAppNotificationService>().Unregister();
+		// Unregister app notification service
+		Ioc.Default.GetRequiredService<IAppNotificationService>().Unregister();
 
-        // Close all windows
-        await WindowsExtensions.CloseAllWindowsAsync();
+		// Close all windows
+		await WindowsExtensions.CloseAllWindowsAsync();
 
-        Current.Exit();
-    }
+		Current.Exit();
+	}
 
-    public static void RestartApplication(string? param = null, bool admin = false)
-    {
-        _log.Information("Restarting current application with args: {param}, admin: {admin}", param, admin);
+	public static void RestartApplication(string? param = null, bool admin = false)
+	{
+		_log.Information("Restarting current application with args: {param}, admin: {admin}", param, admin);
 
-        // Get the path to the executable
-        var exePath = Process.GetCurrentProcess().MainModule?.FileName;
+		// Get the path to the executable
+		var exePath = Process.GetCurrentProcess().MainModule?.FileName;
 
-        if (!string.IsNullOrEmpty(exePath) && File.Exists(exePath))
-        {
-            // Start a new instance of the application
-            try
-            {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = exePath,
-                    UseShellExecute = true,
-                    WorkingDirectory = Environment.CurrentDirectory,
-                    Arguments = param,
-                    Verb = admin ? "runas" : string.Empty
-                });
-            }
-            catch (Exception)
-            {
-                // Ignore any exceptions that occur while starting the new process
-            }
+		if (!string.IsNullOrEmpty(exePath) && File.Exists(exePath))
+		{
+			// Start a new instance of the application
+			try
+			{
+				Process.Start(new ProcessStartInfo
+				{
+					FileName = exePath,
+					UseShellExecute = true,
+					WorkingDirectory = Environment.CurrentDirectory,
+					Arguments = param,
+					Verb = admin ? "runas" : string.Empty
+				});
+			}
+			catch (Exception)
+			{
+				// Ignore any exceptions that occur while starting the new process
+			}
 
-            // Close the log
-            Log.CloseAndFlush();
+			// Close the log
+			Log.CloseAndFlush();
 
-            // Kill the current process
-            Process.GetCurrentProcess().Kill();
-        }
-    }
+			// Kill the current process
+			Process.GetCurrentProcess().Kill();
+		}
+	}
 
-    #endregion App Lifecycle
+	#endregion App Lifecycle
 }

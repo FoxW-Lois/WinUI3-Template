@@ -4,151 +4,154 @@ namespace WinUI3Template.Services;
 
 internal class AppSettingsService(ILocalSettingsService localSettingsService, LocalSettingsKeys localSettingsKeys) : IAppSettingsService
 {
-    private readonly ILocalSettingsService _localSettingsService = localSettingsService;
-    private readonly LocalSettingsKeys _localSettingsKeys = localSettingsKeys;
+	private readonly ILocalSettingsService _localSettingsService = localSettingsService;
+	private readonly LocalSettingsKeys _localSettingsKeys = localSettingsKeys;
 
-    private bool _isInitialized;
+	private bool _isInitialized;
 
-    public void Initialize()
-    {
-        if (!_isInitialized)
-        {
-            // initialize local settings
-            Language = GetLanguage();
-            Theme = GetTheme();
-            BackdropType = GetBackdropType();
+	public void Initialize()
+	{
+		if (!_isInitialized)
+		{
+			// initialize local settings
+			Language = GetLanguage();
+			Theme = GetTheme();
+			BackdropType = GetBackdropType();
 
-            _isInitialized = true;
-        }
-    }
+			_isInitialized = true;
+		}
+	}
 
-    #region Language
+	#region Language
 
-    private string language = DefaultLanguage;
-    public string Language
-    {
-        get => language;
-        private set
-        {
-            if (language != value)
-            {
-                language = value;
-            }
-        }
-    }
+	private string language = DefaultLanguage;
 
-    private static readonly string DefaultLanguage = AppLanguageHelper.DefaultCode;
+	public string Language
+	{
+		get => language;
+		private set
+		{
+			if (language != value)
+			{
+				language = value;
+			}
+		}
+	}
 
-    private string GetLanguage()
-    {
-        var data = GetDataFromSettings(_localSettingsKeys.LanguageKey, DefaultLanguage);
-        return data;
-    }
+	private static readonly string DefaultLanguage = AppLanguageHelper.DefaultCode;
 
-    public async Task SetLanguageAsync(string language)
-    {
-        await SaveDataInSettingsAsync(_localSettingsKeys.LanguageKey, language);
-        Language = language;
-    }
+	private string GetLanguage()
+	{
+		var data = GetDataFromSettings(_localSettingsKeys.LanguageKey, DefaultLanguage);
+		return data;
+	}
 
-    #endregion
+	public async Task SetLanguageAsync(string language)
+	{
+		await SaveDataInSettingsAsync(_localSettingsKeys.LanguageKey, language);
+		Language = language;
+	}
 
-    #region Theme
+	#endregion Language
 
-    private ElementTheme theme = DefaultTheme;
-    public ElementTheme Theme
-    {
-        get => theme;
-        private set
-        {
-            if (theme != value)
-            {
-                theme = value;
-            }
-        }
-    }
+	#region Theme
 
-    private const ElementTheme DefaultTheme = ElementTheme.Default;
+	private ElementTheme theme = DefaultTheme;
 
-    private ElementTheme GetTheme()
-    {
-        var data = GetDataFromSettings(_localSettingsKeys.ThemeKey, DefaultTheme);
-        return data;
-    }
+	public ElementTheme Theme
+	{
+		get => theme;
+		private set
+		{
+			if (theme != value)
+			{
+				theme = value;
+			}
+		}
+	}
 
-    public async Task SetThemeAsync(ElementTheme theme)
-    {
-        await SaveDataInSettingsAsync(_localSettingsKeys.ThemeKey, theme);
-        Theme = theme;
-    }
+	private const ElementTheme DefaultTheme = ElementTheme.Default;
 
-    #endregion
+	private ElementTheme GetTheme()
+	{
+		var data = GetDataFromSettings(_localSettingsKeys.ThemeKey, DefaultTheme);
+		return data;
+	}
 
-    #region Backdrop
+	public async Task SetThemeAsync(ElementTheme theme)
+	{
+		await SaveDataInSettingsAsync(_localSettingsKeys.ThemeKey, theme);
+		Theme = theme;
+	}
 
-    private BackdropType backdropType = DefaultBackdropType;
-    public BackdropType BackdropType
-    {
-        get => backdropType;
-        private set
-        {
-            if (backdropType != value)
-            {
-                backdropType = value;
-            }
-        }
-    }
+	#endregion Theme
 
-    private const BackdropType DefaultBackdropType = BackdropType.Mica;
+	#region Backdrop
 
-    private BackdropType GetBackdropType()
-    {
-        var data = GetDataFromSettings(_localSettingsKeys.BackdropTypeKey, DefaultBackdropType);
-        return data;
-    }
+	private BackdropType backdropType = DefaultBackdropType;
 
-    public async Task SetBackdropAsync(BackdropType type)
-    {
-        await SaveDataInSettingsAsync(_localSettingsKeys.BackdropTypeKey, type);
-        BackdropType = type;
-    }
+	public BackdropType BackdropType
+	{
+		get => backdropType;
+		private set
+		{
+			if (backdropType != value)
+			{
+				backdropType = value;
+			}
+		}
+	}
 
-    #endregion
+	private const BackdropType DefaultBackdropType = BackdropType.Mica;
 
-    #region Helper Methods
+	private BackdropType GetBackdropType()
+	{
+		var data = GetDataFromSettings(_localSettingsKeys.BackdropTypeKey, DefaultBackdropType);
+		return data;
+	}
 
-    private T GetDataFromSettings<T>(string settingsKey, T defaultData)
-    {
-        var data = _localSettingsService.ReadSetting<string>(settingsKey);
+	public async Task SetBackdropAsync(BackdropType type)
+	{
+		await SaveDataInSettingsAsync(_localSettingsKeys.BackdropTypeKey, type);
+		BackdropType = type;
+	}
 
-        if (typeof(T) == typeof(bool) && bool.TryParse(data, out var cacheBoolData))
-        {
-            return (T)(object)cacheBoolData;
-        }
-        else if (typeof(T) == typeof(int) && int.TryParse(data, out var cacheIntData))
-        {
-            return (T)(object)cacheIntData;
-        }
-        else if (typeof(T) == typeof(DateTime) && DateTime.TryParse(data, out var cacheDateTimeData))
-        {
-            return (T)(object)cacheDateTimeData;
-        }
-        else if (typeof(T) == typeof(string) && data?.ToString() is string cacheStringData)
-        {
-            return (T)(object)cacheStringData;
-        }
-        else if (typeof(T).IsEnum && Enum.TryParse(typeof(T), data, out var cacheEnumData))
-        {
-            return (T)cacheEnumData;
-        }
+	#endregion Backdrop
 
-        return defaultData;
-    }
+	#region Helper Methods
 
-    private async Task SaveDataInSettingsAsync<T>(string settingsKey, T data)
-    {
-        await _localSettingsService.SaveSettingAsync(settingsKey, data!.ToString());
-    }
+	private T GetDataFromSettings<T>(string settingsKey, T defaultData)
+	{
+		var data = _localSettingsService.ReadSetting<string>(settingsKey);
 
-    #endregion
+		if (typeof(T) == typeof(bool) && bool.TryParse(data, out var cacheBoolData))
+		{
+			return (T)(object)cacheBoolData;
+		}
+		else if (typeof(T) == typeof(int) && int.TryParse(data, out var cacheIntData))
+		{
+			return (T)(object)cacheIntData;
+		}
+		else if (typeof(T) == typeof(DateTime) && DateTime.TryParse(data, out var cacheDateTimeData))
+		{
+			return (T)(object)cacheDateTimeData;
+		}
+		else if (typeof(T) == typeof(string) && data?.ToString() is string cacheStringData)
+		{
+			return (T)(object)cacheStringData;
+		}
+		else if (typeof(T).IsEnum && Enum.TryParse(typeof(T), data, out var cacheEnumData))
+		{
+			return (T)cacheEnumData;
+		}
+
+		return defaultData;
+	}
+
+	private async Task SaveDataInSettingsAsync<T>(string settingsKey, T data)
+	{
+		await _localSettingsService.SaveSettingAsync(settingsKey, data!.ToString());
+	}
+
+	#endregion Helper Methods
 }

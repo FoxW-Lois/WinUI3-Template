@@ -4,17 +4,17 @@ namespace WinUI3Template.Contracts.Services;
 
 public interface IAppSettingsService
 {
-    void Initialize();
+	void Initialize();
 
-    string Language { get; }
+	string Language { get; }
 
-    Task SetLanguageAsync(string language);
+	Task SetLanguageAsync(string language);
 
-    ElementTheme Theme { get; }
+	ElementTheme Theme { get; }
 
-    Task SetThemeAsync(ElementTheme theme);
+	Task SetThemeAsync(ElementTheme theme);
 
-    BackdropType BackdropType { get; }
+	BackdropType BackdropType { get; }
 
-    Task SetBackdropAsync(BackdropType type);
+	Task SetBackdropAsync(BackdropType type);
 }

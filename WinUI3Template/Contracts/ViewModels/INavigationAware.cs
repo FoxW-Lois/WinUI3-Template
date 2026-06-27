@@ -2,7 +2,7 @@
 
 internal interface INavigationAware
 {
-    void OnNavigatedTo(object parameter);
+	void OnNavigatedTo(object parameter);
 
-    void OnNavigatedFrom();
+	void OnNavigatedFrom();
 }

@@ -2,9 +2,9 @@
 
 internal class LocalSettingsKeys
 {
-    public readonly string LanguageKey = "Language";
+	public readonly string LanguageKey = "Language";
 
-    public readonly string ThemeKey = "Theme";
+	public readonly string ThemeKey = "Theme";
 
-    public readonly string BackdropTypeKey = "Backdrop";
+	public readonly string BackdropTypeKey = "Backdrop";
 }

@@ -7,12 +7,12 @@ namespace WinUI3Template.Views.Pages;
 // For more details, see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid.
 public sealed partial class DataGrid_Page : Page
 {
-    public DataGrid_ViewModel ViewModel { get; }
+	public DataGrid_ViewModel ViewModel { get; }
 
-    public DataGrid_Page()
-    {
-        ViewModel = Ioc.Default.GetRequiredService<DataGrid_ViewModel>();
-        DataContext = ViewModel;
-        InitializeComponent();
-    }
+	public DataGrid_Page()
+	{
+		ViewModel = Ioc.Default.GetRequiredService<DataGrid_ViewModel>();
+		DataContext = ViewModel;
+		InitializeComponent();
+	}
 }

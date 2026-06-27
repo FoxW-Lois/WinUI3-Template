@@ -2,13 +2,13 @@
 
 public interface IPageService
 {
-    Type SettingPageType { get; }
+	Type SettingPageType { get; }
 
-    string SettingPageKey { get; }
+	string SettingPageKey { get; }
 
-    Type GetPageType(string viewModel);
+	Type GetPageType(string viewModel);
 
-    string GetPageKey(Type pageType);
+	string GetPageKey(Type pageType);
 
-    string? GetSubpageKey(Type pageType);
+	string? GetSubpageKey(Type pageType);
 }

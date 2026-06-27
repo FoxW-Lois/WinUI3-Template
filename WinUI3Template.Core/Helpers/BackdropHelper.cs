@@ -8,24 +8,24 @@ namespace WinUI3Template.Core.Helpers;
 
 public partial class BackdropHelper
 {
-    public static void SetRequestedBackdropAsync(Window window, BackdropType type)
-    {
-        if (window != null)
-        {
-            window.SystemBackdrop = type switch
-            {
-                BackdropType.None => null,
-                BackdropType.Acrylic => new DesktopAcrylicBackdrop(),
-                BackdropType.Blur => new BlurredBackdrop(),
-                BackdropType.Transparent => new TransparentTintBackdrop(),
-                _ => new MicaBackdrop(),
-            };
-        }
-    }
+	public static void SetRequestedBackdropAsync(Window window, BackdropType type)
+	{
+		if (window != null)
+		{
+			window.SystemBackdrop = type switch
+			{
+				BackdropType.None => null,
+				BackdropType.Acrylic => new DesktopAcrylicBackdrop(),
+				BackdropType.Blur => new BlurredBackdrop(),
+				BackdropType.Transparent => new TransparentTintBackdrop(),
+				_ => new MicaBackdrop(),
+			};
+		}
+	}
 
-    private partial class BlurredBackdrop : CompositionBrushBackdrop
-    {
-        protected override CompositionBrush CreateBrush(Compositor compositor)
-            => compositor.CreateHostBackdropBrush();
-    }
+	private partial class BlurredBackdrop : CompositionBrushBackdrop
+	{
+		protected override CompositionBrush CreateBrush(Compositor compositor)
+			=> compositor.CreateHostBackdropBrush();
+	}
 }
