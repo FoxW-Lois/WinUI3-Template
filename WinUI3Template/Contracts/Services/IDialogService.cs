@@ -2,6 +2,10 @@
 
 public interface IDialogService
 {
+	Task<string?> ShowTwoButtonDialogWithTextboxAsync(string title, string content, string rightButton = null!);
+
+	Task<string?> ShowTwoButtonDialogWithRichEditboxAsync(string title, string content, string rightButton = null!);
+
 	Task ShowOneButtonDialogAsync(string title, string content);
 
 	Task<WidgetDialogResult> ShowTwoButtonDialogAsync(string title, string content, string leftButton = null!, string rightButton = null!);
