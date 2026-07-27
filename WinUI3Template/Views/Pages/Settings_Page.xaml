@@ -147,7 +147,7 @@
 							ContentAlignment="Vertical"
 							Description="{x:Bind ViewModel.CopyRight, Mode=OneTime}">
 							<StackPanel Margin="-12 0 0 0" Orientation="Vertical">
-								<HyperlinkButton x:Uid="Settings_LicenseLink" NavigateUri="Settings_LicenseLink_NavigateUri" />
+								<HyperlinkButton x:Uid="Settings_LicenseLink" NavigateUri="https://github.com/FoxW-Lois/WinUI3-Template/blob/main/LICENSE" />
 							</StackPanel>
 						</controls:SettingsCard>
 					</controls:SettingsExpander.Items>
