@@ -4,7 +4,7 @@
 
 # WinUI3 Template
 
-**📟 A template for WinUI 3, with support of tray icon, multi-thread window, splash screen, etc... Migrated and adapted to .NET 9.**
+**📟 A template for WinUI 3, with support of tray icon, multi-thread window, splash screen, etc... Migrated and adapted to .NET 10.**
 
 ## ⭐ Features
 
