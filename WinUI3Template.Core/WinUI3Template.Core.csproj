@@ -29,7 +29,7 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Extensions" Version="8.2.251219" />
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.298">
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.321">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
